@@ -19,7 +19,7 @@ def powerdownsensors(sensorpower):
     
 def filterreverse(filterposition,filterreversedelay):
     time.sleep(filterreversedelay)
-    print("reversing the filter")
+    print("Reversing the filter")
     GPIO.output(filterposition,GPIO.LOW)
 
 if __name__=='__main__':
@@ -39,15 +39,15 @@ if __name__=='__main__':
     if args.updown == 'up':
         # Power up sensors and check interlock
         powerupsensors(pin.sensorpower)
-        if GPIO.input(pin.interlock)==1:
+        '''if GPIO.input(pin.interlock)==1:
             print("Interlock fail: cryogen container is not in place")
             powerdownsensors(pin.sensorpower)
             filterreverse(pin.filterposition,0)
             exit()
         else:
             print("Safety interlock pass: cryogen container is in place")
-            # put filter into place and wait
-            filterforward(pin.filterposition)
+            # put filter into place and wait'''
+        filterforward(pin.filterposition)
     elif args.updown == 'down':
         powerdownsensors(pin.sensorpower)
         filterreverse(pin.filterposition,0)
