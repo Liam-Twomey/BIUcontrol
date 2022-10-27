@@ -47,8 +47,14 @@ def pedal():
     if button_start.enabled and GPIO.input(pin.pedalsensor)==0:
         print("Pedal triggered")
         startprocess()
-
+def humidify(humidity):
+    GPIO.setup(pin.dht22,GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
+    print('Bringing humidity to %d%').format(humidity)
+    arguments = ["python3","BIUpowerupdown.py","--opthum",humidity]
     
+
+
+# UI
 app = App(title="Back-it-up", layout="grid", height = 200)
 stimelabel  = Text(app, text="Spray time (msec)", grid=[0,1])
 stime       = TextBox(app, grid=[1,1], text="30")
@@ -56,19 +62,22 @@ rdelaylabel = Text(app, text="Retraction delay (msec)", grid=[0,2])
 rdelay      = TextBox(app, grid=[1,2], text="50")
 pdelaylabel = Text(app, text="Plunge delay (msec)", grid=[0,3])
 pdelay      = TextBox(app, grid=[1,3], text="50")
+humlabel    = Text(app, text="Target Humidity (%)", grid=[0,4])
+humtarget   = TextBox(app, grid=[1,4], text="95")
 
 
 
-
+# Button functionality
 donotplunge = CheckBox(app, text="Do not plunge", grid=[0,4])
 button_up   = PushButton(app, command=powerup,text="Ready", grid=[0,5])
 button_down = PushButton(app, command=powerdown, text="Abort", grid=[1,5])
-button_start= PushButton(app, command=startprocess, text="Spray & Plunge", grid=[0,6])
+button_start= PushButton(app, command=startprocess, text="Spray & Plunge", grid=[1,6])
+button_humid= PushButton(app, command=humidify, text="Humidify", grid=[0,6])
 button_up.bg="green"
 button_start.bg = "red"
 button_down.bg = "orange"
+button_humid.bg = "purple"
 button_start.disable()
-
 cleancycleslabel = Text(app, text="Cleaning cycles", grid=[3,1])
 cleancycles      = TextBox(app, text="5",grid=[4,1])   
 cleantimelabel   = Text(app, text="Cleaning pulse (msec)", grid=[3,2])
@@ -76,6 +85,8 @@ cleantime        = TextBox(app, text="200",grid=[4,2])
 clean            = PushButton(app, command=cleanprocess, text="Clean", grid=[3,5])
 clean.bg = "lightblue"
 
+
+# Finishing up
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 #app.repeat(100,pedal)

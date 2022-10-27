@@ -6,3 +6,5 @@ filterposition = 13 #
 sensorpower    = 6  #
 pedalsensor    = 20 #  
 interlock      = 21 #  
+humidifier     = -1 #
+fan            = -1 #

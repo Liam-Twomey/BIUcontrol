@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Must run "sudo pip3 install --install-option="--force-pi" Adafruit_DHT" on
+# RPi before Adafruit_DHT library can be used.
 
 # Uncomment for use of pi
 import RPi.GPIO as GPIO
@@ -21,11 +23,18 @@ def filterreverse(filterposition,filterreversedelay):
     time.sleep(filterreversedelay)
     print("Reversing the filter")
     GPIO.output(filterposition,GPIO.LOW)
+def checkconditions():
+    hum, temp = Adafruit_DHT.read_retry(dht_sensor, pin.dht22)
+    if hum is not None and temp is not None:
+        return hum, temp
+    else:
+        return False
 
 if __name__=='__main__':
-    parser = argparse.ArgumentParser(description='Arguments for SIOpowerupdown')
-    parser.add_argument('--updown',      help='Power up or down',required=True)
+    parser = argparse.ArgumentParser(description='Arguments for BIUpowerupdown')
+    parser.add_argument('--updown', help='Power up or down',required=True)
     args = parser.parse_args()
+    dht_sensor = Adafruit_DHT.DHT22
 
     GPIO.setwarnings(False)
     GPIO.cleanup()    
