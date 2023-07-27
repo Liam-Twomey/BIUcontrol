@@ -1,12 +1,12 @@
 Helpful commands for BIU usage
 
 ## Using the gh cli for login and cloning
-`gh auth login`
+`gh auth login
 	logs in to the github CLI interface. Choose <github.com>, then <https>,
 	then copy the code and enter into the webrowser. DO NOT use ctrl+C to
 	copy, as that will exit the process instead.
 
-`gh repo clone <user>/<repo>
+`gh repo clone <user>/<repo>`
 	Once logged in to gh, can be used to clone a repo for local work.
 
 ## Staging and committing changes
