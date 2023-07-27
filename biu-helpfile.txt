@@ -1,0 +1,15 @@
+Helpful commands for BIU usage
+
+gh auth login
+	logs in to the github CLI interface. Choose <github.com>, then <https>,
+	then copy the code and enter into the webrowser. DO NOT use ctrl+C to
+	copy, as that will exit the process instead.
+
+gh repo clone <user>/<repo>
+	Once logged in to gh, can be used to clone a repo for local work.
+
+git add <directory>
+	stages changes to directory path
+git commit -m "<message>"
+	commit the staged files, using <message> as the reqired commit message.
+git pull
