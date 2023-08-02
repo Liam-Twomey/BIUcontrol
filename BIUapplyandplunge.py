@@ -24,9 +24,9 @@ def filterreverse(filterposition,filterreversedelay):
     GPIO.output(filterposition,GPIO.LOW)
 
 def applysample(cannon,duration):
-    GPIO.output(cannon,GPIO.HIGH)
-    time.sleep(duration)
     GPIO.output(cannon,GPIO.LOW)
+    time.sleep(duration)
+    GPIO.output(cannon,GPIO.HIGH)
     
 def releaseplunger(plunger,wait):
     time.sleep(wait)
