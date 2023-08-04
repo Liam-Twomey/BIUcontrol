@@ -47,19 +47,6 @@ if __name__=='__main__':
     parser.add_argument('--pdelay',     help='Time to wait before plunging (seconds)',default = 0, type=float,required=False)
     parser.add_argument('--donotplunge',help='Do not fire the plunger (diagnostic)',action = 'store_true')  
     args = parser.parse_args()
-    #Default args for testing
-    '''class arguments:
-        def __init__(self, stime, rdelay, pdelay, dnplunge = False):
-            self.stime = stime
-            self.rdelay = rdelay
-            self.pdelay = pdelay
-            self.donotplunge = dnplunge   
-    args = arguments(0.03, .05, .05)
-    '''
-    # Default timing
-    #cannontimetoreverse = 0.020
-    #cannonreversedelay  = args.stime + args.sdelay+ cannontimetoreverse
-
 
     GPIO.setwarnings(False)
       
@@ -118,6 +105,6 @@ if __name__=='__main__':
         time.sleep(1+max(args.stime,args.rdelay)-args.pdelay)
     powerdownsensors(pin.sensorpower)
 
-    #GPIO.cleanup()
+    GPIO.cleanup()
     print("Done!")
 

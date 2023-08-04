@@ -15,9 +15,9 @@ if __name__=='__main__':
     args = parser.parse_args()
 
     for x in range(args.cycles):
-        GPIO.output(pin.cannon,GPIO.HIGH)
-        time.sleep(args.stime)
         GPIO.output(pin.cannon,GPIO.LOW)
+        time.sleep(args.stime)
+        GPIO.output(pin.cannon,GPIO.HIGH)
         time.sleep(0.2)
     
 GPIO.cleanup()

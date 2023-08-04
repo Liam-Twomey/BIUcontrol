@@ -7,11 +7,9 @@ GPIO.setmode(GPIO.BCM)
 for i in pins:
     GPIO.setup(i,GPIO.OUT)
 def hi(pinnum):
-    for i in pinnum:
-        GPIO.output(i,GPIO.HIGH)
+    GPIO.output(pinnum,GPIO.HIGH)
 def lo(pinnum):
-    for i in pinnum:
-        GPIO.output(i,GPIO.LOW)
+    GPIO.output(pinnum,GPIO.LOW)
 def reset():
     GPIO.cleanup()
  
