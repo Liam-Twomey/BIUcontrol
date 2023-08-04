@@ -84,4 +84,4 @@ app.display()
 #shutdown
 print('BIU program shutting down...')
 powerdown()
-GPIO.cleanup()
+#GPIO.cleanup()
